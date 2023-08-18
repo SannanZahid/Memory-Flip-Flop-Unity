@@ -21,7 +21,12 @@ public class GameBoard : MonoBehaviour
     private Transform _tempCard = default; // For Card Creation to avoid garbage collection
     private Card _previousCard; // for keeping track of selected card comparing
     private int state = 0; // To maintain cards selected state
-
+    private int _currentLevel = default;
+    public void Start()
+    {
+        _currentLevel = GameConstantsPlayerPref.GetGameLevel();
+        SetCurrentLevelText(_currentLevel);
+    }
     /// Takes face card sprites and pass it to card creation  
     public void SetBoard(List<Sprite> selectedCardFace)
     {
@@ -69,10 +74,12 @@ public class GameBoard : MonoBehaviour
                     {
                         StartCoroutine(DeactivateCards(_previousCard, currentCard));
                         _scoreSystem.CardsMatched_Score();
+                        GameSoundManager.Instance.PlaySoundOneShot(GameSoundManager.SoundType.Match);
                     }
                     else
                     {
                         _scoreSystem.CardsMisMatchedScore();
+                        GameSoundManager.Instance.PlaySoundOneShot(GameSoundManager.SoundType.MisMatch);
                         StartCoroutine(ResetCards(_previousCard, currentCard));
                     }
                     state = 0;
@@ -95,6 +102,20 @@ public class GameBoard : MonoBehaviour
         card2.DeactivateCardAnimated();
         _spawnCards.Remove(card1.transform);
         _spawnCards.Remove(card2.transform);
+        ValidateGameEnd();
+    }
+    void ValidateGameEnd()
+    {
+        if (_spawnCards.Count <= 0)
+        {
+            SetLevelLabel();
+        }
+    }
+    void SetLevelLabel()
+    {
+        _currentLevel++;
+        GameConstantsPlayerPref.SetGameLevel(_currentLevel);
+        SetCurrentLevelText(_currentLevel);
     }
     IEnumerator StartGame()
     {
@@ -131,5 +152,9 @@ public class GameBoard : MonoBehaviour
             boardContainor.cellSize = new Vector2(spriteWidth * ratioHeight, spriteHeight * ratioHeight);
         }
 
+    }
+    void SetCurrentLevelText(int value)
+    {
+        GameUIMnager.Instance.SetGameLevelText("" + value);
     }
 }

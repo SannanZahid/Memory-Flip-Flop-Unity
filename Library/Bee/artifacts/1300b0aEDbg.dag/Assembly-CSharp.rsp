@@ -349,6 +349,7 @@
 "Assets/Scripts/GameBoard.cs"
 "Assets/Scripts/GameConstantsPlayerPref.cs"
 "Assets/Scripts/GameController.cs"
+"Assets/Scripts/GameSoundManager.cs"
 "Assets/Scripts/GameUIMnager.cs"
 "Assets/Scripts/ScoreSystem.cs"
 "Assets/Scripts/SingletonBase.cs"
