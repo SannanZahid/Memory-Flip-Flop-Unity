@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,15 +8,17 @@ using UnityEngine.UI;
 public class GameBoard : MonoBehaviour
 {
     [Header("Time User Is Showed Cards In Start")]
-
-    public float StartGameAfter = 1f; // Time to show the cards before game start
-
+    [SerializeField]
+    private float StartGameAfter = 1f; // Time to show the cards before game start
+    [SerializeField]
+    private float _cellSpacing = 5f; //Space Between Cards in containor
     private List<Transform> _spawnCards = new List<Transform>(); // Cards Created by Game Board are stored for keeping track
     [SerializeField]
     private Transform _cardPrefab = default, _boardWidgetHolder = default; // Card prefab object which will be spawned on board and Board widget will hold the spawn cards
     private Transform _tempCard = default; // For Card Creation to avoid garbage collection
-    [SerializeField]
-    private float _cellSpacing = 5f; //Space Between Cards in containor
+    private Card _previousCard; // for keeping track of selected card comparing
+    private int state = 0; // To maintain cards selected state
+
     /// Takes face card sprites and pass it to card creation  
     public void SetBoard(List<Sprite> selectedCardFace)
     {
@@ -26,6 +29,7 @@ public class GameBoard : MonoBehaviour
             CreateCard(i, selectedCardFace[i]);
         }
         ShuffleAndSetToBoard();
+        StartCoroutine(StartGame());
     }
     // Shuffles the created card and sets the Cards on to the UI Canvas containor
     void ShuffleAndSetToBoard()
@@ -42,8 +46,58 @@ public class GameBoard : MonoBehaviour
     {
         _tempCard = Instantiate(_cardPrefab.gameObject).transform;
         _tempCard.gameObject.SetActive(true);
-        _tempCard.GetComponent<Card>().Init(id, cardFront);
+        _tempCard.GetComponent<Card>().Init(id, cardFront, ValidateCardCombination);
         _spawnCards.Add(_tempCard);
+    }
+    // validates cards matching and mismatching condition
+    public void ValidateCardCombination(Card currentCard)
+    {
+        switch (state)
+        {
+            case 0:
+                {
+                    _previousCard = currentCard;
+                    state = 1;
+                    break;
+                }
+            case 1:
+                {
+                    if (_previousCard.CardID.Equals(currentCard.CardID))
+                    {
+                        StartCoroutine(DeactivateCards(_previousCard, currentCard));
+                    }
+                    else
+                    {
+                        StartCoroutine(ResetCards(_previousCard, currentCard));
+                    }
+                    state = 0;
+                    break;
+                }
+        }
+    }
+    // set cards to Back side if when cards selected mismatch
+    IEnumerator ResetCards(Card card1, Card card2)
+    {
+        yield return new WaitForSeconds(1f);
+        card1.ResetCard();
+        card2.ResetCard();
+    }
+    // Deactivates card selected
+    IEnumerator DeactivateCards(Card card1, Card card2)
+    {
+        yield return new WaitForSeconds(1f);
+        card1.DeactivateCardAnimated();
+        card2.DeactivateCardAnimated();
+        _spawnCards.Remove(card1.transform);
+        _spawnCards.Remove(card2.transform);
+    }
+    IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(StartGameAfter);
+        foreach (Transform card in _spawnCards)
+        {
+            card.GetComponent<Card>().ShowCardSide(Card.CardSides.Back);
+        }
     }
     //scalling cards according to containor widget
     void ScaleCardToFitContainor(Sprite referenceCardSize,float gridSize)
