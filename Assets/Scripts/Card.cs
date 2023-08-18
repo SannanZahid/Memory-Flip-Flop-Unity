@@ -63,8 +63,7 @@ public class Card : MonoBehaviour
     // set card match animation
     public void DeactivateCardAnimated()
     {
-        _cardFront.gameObject.SetActive(false);
-        _cardBack.gameObject.SetActive(false);
+        AnimateMatchCard();
         _cardBtn.interactable = false;
     }
     //For animation of flipping cards.
@@ -103,5 +102,23 @@ public class Card : MonoBehaviour
         cardF.transform.rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
         cardB.transform.rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
         flipAnimFlag = true;
+    }
+    public void AnimateMatchCard()
+    {
+        StartCoroutine(scaleOverTime(_cardFront, new Vector3(0, 0, 0), 0.25f));
+        StartCoroutine(scaleOverTime(_cardBack, new Vector3(0, 0, 0), 0.25f));
+    }
+    IEnumerator scaleOverTime(Transform objectToScale, Vector3 toScale, float duration)
+    {
+        float counter = 0;
+        Vector3 startScaleSize = objectToScale.localScale;
+        while (counter < duration)
+        {
+            counter += Time.deltaTime;
+            objectToScale.localScale = Vector3.Lerp(startScaleSize, toScale, counter / duration);
+            yield return null;
+        }
+        objectToScale.gameObject.SetActive(false);
+        objectToScale.localScale = Vector3.one;
     }
 }
