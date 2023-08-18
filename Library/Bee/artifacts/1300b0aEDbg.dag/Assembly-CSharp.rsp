@@ -351,6 +351,7 @@
 "Assets/Scripts/GameController.cs"
 "Assets/Scripts/GameSoundManager.cs"
 "Assets/Scripts/GameUIMnager.cs"
+"Assets/Scripts/LoadingHelper/LoadingScreenAsyncScript.cs"
 "Assets/Scripts/Managers/MainMenuManager.cs"
 "Assets/Scripts/ScoreSystem.cs"
 "Assets/Scripts/SingletonBase.cs"

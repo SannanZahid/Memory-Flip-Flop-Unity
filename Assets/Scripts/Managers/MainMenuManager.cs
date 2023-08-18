@@ -6,6 +6,9 @@ public class MainMenuManager : MonoBehaviour
     [Header("Pass Text References")]
     [SerializeField]
     private TMP_Text _totalMatches, _totalTurns, _totalCombo, _gameLevel;
+    [Header("Pass Loading Screen Reference")]
+    [SerializeField]
+    private Transform _loagingScreen;
 
     //In start if first time user enters default playerpref are set
     //in the GameConstantsPlayerPref class
@@ -40,5 +43,9 @@ public class MainMenuManager : MonoBehaviour
     {
         _gameLevel.text = messageText;
     }
-
+    public void StartGameScene()
+    {
+        _loagingScreen.gameObject.SetActive(true);
+        _loagingScreen.gameObject.GetComponent<LoadingScreenAsyncScript>().StartLoading("GameScene");
+    }
 }
