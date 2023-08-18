@@ -15,6 +15,9 @@ public class GameBoard : MonoBehaviour
     private List<Transform> _spawnCards = new List<Transform>(); // Cards Created by Game Board are stored for keeping track
     [SerializeField]
     private Transform _cardPrefab = default, _boardWidgetHolder = default; // Card prefab object which will be spawned on board and Board widget will hold the spawn cards
+    [Header("Pass Score System Object")]
+    [SerializeField]
+    private ScoreSystem _scoreSystem;
     private Transform _tempCard = default; // For Card Creation to avoid garbage collection
     private Card _previousCard; // for keeping track of selected card comparing
     private int state = 0; // To maintain cards selected state
@@ -65,9 +68,11 @@ public class GameBoard : MonoBehaviour
                     if (_previousCard.CardID.Equals(currentCard.CardID))
                     {
                         StartCoroutine(DeactivateCards(_previousCard, currentCard));
+                        _scoreSystem.CardsMatched_Score();
                     }
                     else
                     {
+                        _scoreSystem.CardsMisMatchedScore();
                         StartCoroutine(ResetCards(_previousCard, currentCard));
                     }
                     state = 0;
