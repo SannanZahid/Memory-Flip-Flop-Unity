@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-/** --- Class Purpose ---
- *    Class for creating game board with required card sprites and providing basic shuffling functionality,
- *    class also keep tack of the game state.
- * **/
+/// <Comment Start>  Class Purpose
+//   Class for creating game board with required card sprites and providing basic shuffling functionality,
+//    class also keep tack of the game state.
+/// </Comment End>
 public class GameController : MonoBehaviour
 {
     [Header("Pass Sprites Of Facing Cards")]
