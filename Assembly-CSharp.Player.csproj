@@ -57,13 +57,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameUIMnager.cs" />
+    <Compile Include="Assets\Scripts\GameSoundManager.cs" />
     <Compile Include="Assets\Scripts\Card.cs" />
     <Compile Include="Assets\Scripts\GameConstantsPlayerPref.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\SingletonBase.cs" />
     <Compile Include="Assets\Scripts\ScoreSystem.cs" />
     <Compile Include="Assets\Scripts\GameBoard.cs" />
-    <Compile Include="Assets\Scripts\GameSoundManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

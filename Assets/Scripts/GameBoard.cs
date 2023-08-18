@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,14 +23,16 @@ public class GameBoard : MonoBehaviour
     private Card _previousCard; // for keeping track of selected card comparing
     private int state = 0; // To maintain cards selected state
     private int _currentLevel = default;
+    private Action _callbackGameController;
     public void Start()
     {
         _currentLevel = GameConstantsPlayerPref.GetGameLevel();
         SetCurrentLevelText(_currentLevel);
     }
     /// Takes face card sprites and pass it to card creation  
-    public void SetBoard(List<Sprite> selectedCardFace)
+    public void SetBoard(List<Sprite> selectedCardFace, Action callbackGameController)
     {
+        _callbackGameController = callbackGameController;
         ScaleCardToFitContainor(selectedCardFace[0],(float) selectedCardFace.Count / 2);
         for (int i = 0; i < selectedCardFace.Count; i++)
         {
@@ -104,10 +107,13 @@ public class GameBoard : MonoBehaviour
         _spawnCards.Remove(card2.transform);
         ValidateGameEnd();
     }
+    /// Check if spawncard array is empty, as matching cards are removed from the list,
+    /// if list is empty then no more cards are left to match
     void ValidateGameEnd()
     {
         if (_spawnCards.Count <= 0)
         {
+            _callbackGameController.Invoke();
             SetLevelLabel();
         }
     }
@@ -124,6 +130,31 @@ public class GameBoard : MonoBehaviour
         {
             card.GetComponent<Card>().ShowCardSide(Card.CardSides.Back);
         }
+    }
+    public void ResetBoardElements()
+    {
+        foreach (Transform card in _spawnCards)
+        {
+            card.GetComponent<Card>().DeactivateCard();
+        }
+        _spawnCards.Clear();
+    }
+    public void ResetBoard(List<Sprite> selectedCardFace)
+    {
+        ResetBoardElements();
+        _scoreSystem.ResetScoreForNewLevel();
+        Transform[] exixtingCards = _boardWidgetHolder.GetComponentsInChildren<Transform>();
+        for (int i = 1, j = 0; i < exixtingCards.Length; i += 2, j++)
+        {
+            exixtingCards[i].GetComponent<Card>().ResetCard(j, selectedCardFace[j]);
+            exixtingCards[i].SetParent(null);
+            _spawnCards.Add(exixtingCards[i]);
+            exixtingCards[i + 1].GetComponent<Card>().ResetCard(j, selectedCardFace[j]);
+            exixtingCards[i + 1].SetParent(null);
+            _spawnCards.Add(exixtingCards[i + 1]);
+        }
+        ShuffleAndSetToBoard();
+        StartCoroutine(StartGame());
     }
     //scalling cards according to containor widget
     void ScaleCardToFitContainor(Sprite referenceCardSize,float gridSize)

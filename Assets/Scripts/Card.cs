@@ -61,6 +61,21 @@ public class Card : MonoBehaviour
         ShowCardSide(CardSides.Back);
         _cardBtn.interactable = true;
     }
+    public void ResetCard(int cardId, Sprite cardFace)
+    {
+        CardID = cardId;
+        _cardFront.GetComponent<Image>().sprite = cardFace;
+        ShowCardSide(CardSides.Front);
+        _cardBtn.interactable = true;
+    }
+    public void DeactivateCard()
+    {
+        _cardFront.gameObject.SetActive(false);
+        _cardBack.gameObject.SetActive(false);
+        _cardBtn.interactable = false;
+        StopAllCoroutines();
+    }
+
     // set card match animation
     public void DeactivateCardAnimated()
     {

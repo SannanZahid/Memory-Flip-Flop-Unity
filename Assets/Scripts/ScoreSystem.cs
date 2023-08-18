@@ -14,6 +14,16 @@ public class ScoreSystem : MonoBehaviour
         _totalCombo = GameConstantsPlayerPref.GetTotalCombo();
         SetTotalComboScoreDashboard(_totalCombo);
     }
+    ///Reset Board to default on level complete and level fail
+    public void ResetScoreForNewLevel()
+    {
+        _matchScore = 0;
+        SetMatchScoreDashboard(0);
+        _turnsScore = 0;
+        SetTurnScoreDashboard(0);
+        _comboScore = 0;
+        SetComboScoreDashboard(0);
+    }
     // To keep track of matching cards and sequelce of matching cards
     // for combo calculation called by GameBoard class 
     public void CardsMatched_Score()

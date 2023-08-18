@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -23,7 +24,7 @@ public class GameController : MonoBehaviour
     void InitializeBoard()
     {
         Shuffle(ref _cardFace);
-        _gameBoard.SetBoard(GetShuffleFaceCards());
+        _gameBoard.SetBoard(GetShuffleFaceCards(), LevelComplete);
     }
     // Returns the number of cards to be placed on board from sprite list.
     List<Sprite> GetShuffleFaceCards()
@@ -43,5 +44,21 @@ public class GameController : MonoBehaviour
             list[k] = list[n];
             list[n] = value;
         }
+    }
+    public void StartNextLevel()
+    {
+        Shuffle(ref _cardFace);
+        _gameBoard.ResetBoard(GetShuffleFaceCards());
+    }
+    public void LevelComplete()
+    {
+       StartCoroutine( StartGame());
+        
+        GameSoundManager.Instance.PlaySoundOneShot(GameSoundManager.SoundType.GameComplete);
+    }
+    IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(3f);
+        StartNextLevel();
     }
 }
