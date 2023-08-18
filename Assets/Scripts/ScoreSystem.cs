@@ -4,16 +4,18 @@ public class ScoreSystem : MonoBehaviour
 {
     private int _matchScore = 0, _turnsScore = 0, _comboScore = 0, _totalMatchScore = 0, _totalTurnsScore = 0, _totalCombo = 0;
     bool _match = false;
-
-    public void ResetScoreForNewLevel()
+    //set stored total match cards, total turn and total combo to scoreboard
+    public void Start()
     {
-        _matchScore = 0;
-        SetMatchScoreDashboard(0);
-        _turnsScore = 0;
-        SetTurnScoreDashboard(0);
-        _comboScore = 0;
-        SetComboScoreDashboard(0);
+        _totalMatchScore = GameConstantsPlayerPref.GetTotalMatches();
+        SetTotalMatchScoreDashboard(_totalMatchScore);
+        _totalTurnsScore = GameConstantsPlayerPref.GetTotalTurns();
+        SetTotalTurnScoreDashboard(_totalTurnsScore);
+        _totalCombo = GameConstantsPlayerPref.GetTotalCombo();
+        SetTotalComboScoreDashboard(_totalCombo);
     }
+    // To keep track of matching cards and sequelce of matching cards
+    // for combo calculation called by GameBoard class 
     public void CardsMatched_Score()
     {
         if (_match)
@@ -27,6 +29,7 @@ public class ScoreSystem : MonoBehaviour
         IncrementMatch();
         IncrementTurn();
     }
+    // To keep track of mismatching cards called by GameBoard class 
     public void CardsMisMatchedScore()
     {
         _match = false;
@@ -56,17 +59,23 @@ public class ScoreSystem : MonoBehaviour
     {
         _totalMatchScore++;
         SetTotalMatchScoreDashboard(_totalMatchScore);
+        GameConstantsPlayerPref.SetTotalMatches(_totalMatchScore);
     }
     void SetCardsTotalTurnsScore()
     {
         _totalTurnsScore++;
         SetTotalTurnScoreDashboard(_totalTurnsScore);
+        GameConstantsPlayerPref.SetTotalTurns(_totalTurnsScore);
     }
     void SetCardsTotalComboScore()
     {
         _totalCombo++;
         SetTotalComboScoreDashboard(_totalCombo);
+        GameConstantsPlayerPref.SetTotalCombo(_totalCombo);
     }
+    /// <Comment Start>  Functions Purpose
+    /// Score calculated is populated to scored board in game screen UI
+    /// </Comment End>
     void SetComboScoreDashboard(int value)
     {
         GameUIMnager.Instance.SetComboText("" + value);
@@ -91,5 +100,4 @@ public class ScoreSystem : MonoBehaviour
     {
         GameUIMnager.Instance.SetTotalTurnsText("" + value);
     }
-
 }
