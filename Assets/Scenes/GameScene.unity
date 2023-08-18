@@ -1148,6 +1148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034191b559bb0d74b82f7f6c43da35ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LoadFromResources: 0
+  PathToResourceSprite: CardSprites/Card_Atlas5x6
   _cardFace:
   - {fileID: 1311494806, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
   - {fileID: 1425109225, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
@@ -4352,20 +4354,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 639680128}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: StartNextLevel
+        m_MethodName: ResetLevelOnFail
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1541703163}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

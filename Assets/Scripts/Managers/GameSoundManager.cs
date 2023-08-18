@@ -8,7 +8,7 @@ public class GameSoundManager : Singleton<GameSoundManager>
     [SerializeField]
     private AudioClip _matchClip, _misMatchClip, _gameCompleteClip, _BtnSoundClip, _cardFlipSoundClip, _gameFailClip;
     public enum SoundType { Match, MisMatch, GameComplete, ButtonSound, CardFlip, GameFail }
-
+    //Initialize singleton instance and getting AudioSource component
     protected override void Awake()
     {
         base.Awake();
@@ -23,6 +23,7 @@ public class GameSoundManager : Singleton<GameSoundManager>
         _soundPercentage = volume;
         GameConstantsPlayerPref.SetSound(volume);
     }
+    // play sound using Playoneshot from script using instance
     public void PlaySoundOneShot(SoundType playSound)
     {
         switch(playSound)

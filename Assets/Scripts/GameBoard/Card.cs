@@ -61,6 +61,7 @@ public class Card : MonoBehaviour
         ShowCardSide(CardSides.Back);
         _cardBtn.interactable = true;
     }
+    //reset the cards on level fail or level complete
     public void ResetCard(int cardId, Sprite cardFace)
     {
         CardID = cardId;
@@ -119,11 +120,13 @@ public class Card : MonoBehaviour
         cardB.transform.rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
         flipAnimFlag = true;
     }
+    //play animation of scale on matching cards
     public void AnimateMatchCard()
     {
         StartCoroutine(scaleOverTime(_cardFront, new Vector3(0, 0, 0), 0.25f));
         StartCoroutine(scaleOverTime(_cardBack, new Vector3(0, 0, 0), 0.25f));
     }
+    // coroutine for scaling animation
     IEnumerator scaleOverTime(Transform objectToScale, Vector3 toScale, float duration)
     {
         float counter = 0;

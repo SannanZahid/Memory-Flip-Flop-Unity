@@ -56,17 +56,17 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\GameUIMnager.cs" />
-    <Compile Include="Assets\Scripts\GameSoundManager.cs" />
-    <Compile Include="Assets\Scripts\Card.cs" />
-    <Compile Include="Assets\Scripts\GameConstantsPlayerPref.cs" />
-    <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameUIMnager.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameSoundManager.cs" />
+    <Compile Include="Assets\Scripts\GameBoard\Card.cs" />
+    <Compile Include="Assets\Scripts\LoadingHelper\LoadingScreenAsyncScript.cs" />
+    <Compile Include="Assets\Scripts\GameStorage\GameConstantsPlayerPref.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameController.cs" />
     <Compile Include="Assets\Scripts\SingletonBase.cs" />
     <Compile Include="Assets\Scripts\Managers\MainMenuManager.cs" />
-    <Compile Include="Assets\Scripts\TimeSystem.cs" />
-    <Compile Include="Assets\Scripts\ScoreSystem.cs" />
-    <Compile Include="Assets\Scripts\GameBoard.cs" />
-    <Compile Include="Assets\Scripts\LoadingHelper\LoadingScreenAsyncScript.cs" />
+    <Compile Include="Assets\Scripts\Managers\TimeSystem.cs" />
+    <Compile Include="Assets\Scripts\Managers\ScoreSystem.cs" />
+    <Compile Include="Assets\Scripts\GameBoard\GameBoard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

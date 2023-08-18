@@ -7,10 +7,12 @@ public class LoadingScreenAsyncScript : MonoBehaviour
 {
     [SerializeField]
     private Image _loadSlide;
+    // to start loading functionality function is called from script 
     public void StartLoading(string sceneName)
     {
         StartCoroutine(AsyncLoading(sceneName));
     }
+    // coroutine to start async loading for scene switch
     private IEnumerator AsyncLoading(string sceneName)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);

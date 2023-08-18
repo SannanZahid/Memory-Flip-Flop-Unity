@@ -27,6 +27,7 @@ public class MainMenuManager : MonoBehaviour
         SetTotalTurnsText("" + GameConstantsPlayerPref.GetTotalTurns());
         SetGameLevelText("LEVEL " + GameConstantsPlayerPref.GetGameLevel());
     }
+    //Update score board on main menu
     public void SetTotalComboText(string messageText)
     {
         _totalCombo.text = messageText;
@@ -43,6 +44,7 @@ public class MainMenuManager : MonoBehaviour
     {
         _gameLevel.text = messageText;
     }
+    //button click to start gamescene from main menu
     public void StartGameScene()
     {
         _loagingScreen.gameObject.SetActive(true);

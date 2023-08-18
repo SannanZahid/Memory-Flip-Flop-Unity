@@ -18,7 +18,7 @@ public class GameBoard : MonoBehaviour
     private Transform _cardPrefab = default, _boardWidgetHolder = default; // Card prefab object which will be spawned on board and Board widget will hold the spawn cards
     [Header("Pass Score System Object")]
     [SerializeField]
-    private ScoreSystem _scoreSystem;
+    private ScoreSystem _scoreSystem;// sorce system object to manage player score
     [Header("Pass Time System Object")]
     [SerializeField]
     private TimeSystem _timerSystem;
@@ -26,7 +26,8 @@ public class GameBoard : MonoBehaviour
     private Card _previousCard; // for keeping track of selected card comparing
     private int state = 0; // To maintain cards selected state
     private int _currentLevel = default;
-    private Action _callbackGameController;
+    private Action _callbackGameController;// call back function on game complete
+    //Current Level Progress is updated to gamescene on start
     public void Start()
     {
         _currentLevel = GameConstantsPlayerPref.GetGameLevel();
@@ -145,6 +146,7 @@ public class GameBoard : MonoBehaviour
         _spawnCards.Clear();
         _timerSystem.ResetTimer();
     }
+    // spawn cards are reset again for next level or on level restart
     public void ResetBoard(List<Sprite> selectedCardFace)
     {
         ResetBoardElements();
@@ -188,8 +190,8 @@ public class GameBoard : MonoBehaviour
         {
             boardContainor.cellSize = new Vector2(spriteWidth * ratioHeight, spriteHeight * ratioHeight);
         }
-
     }
+    // for setting level progress
     void SetCurrentLevelText(int value)
     {
         GameUIMnager.Instance.SetGameLevelText("" + value);
