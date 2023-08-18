@@ -47,18 +47,18 @@ public class GameController : MonoBehaviour
     }
     public void StartNextLevel()
     {
-        Shuffle(ref _cardFace);
-        _gameBoard.ResetBoard(GetShuffleFaceCards());
+        GameUIMnager.Instance.ToggleActivateLevelCompleteScreen(false);
+        StartCoroutine(StartGame());
     }
     public void LevelComplete()
     {
-       StartCoroutine( StartGame());
-        
         GameSoundManager.Instance.PlaySoundOneShot(GameSoundManager.SoundType.GameComplete);
+        GameUIMnager.Instance.ToggleActivateLevelCompleteScreen(true);
     }
     IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(3f);
-        StartNextLevel();
+        yield return new WaitForSeconds(1.5f);
+        Shuffle(ref _cardFace);
+        _gameBoard.ResetBoard(GetShuffleFaceCards());
     }
 }

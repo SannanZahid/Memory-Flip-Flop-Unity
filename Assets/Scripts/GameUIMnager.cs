@@ -5,6 +5,7 @@ public class GameUIMnager : Singleton<GameUIMnager>
     [Header("Pass Text References")]
     [SerializeField]
     private TMP_Text _matchesTxt, _turnsTxt, _comboTxt, _totalMatchesTxt, _totalTurnsTxt, _totalComboTxt, _gameLevelTxt,_gameTimerTxt;
+    public Transform _LevelCompleteScreen;
     public void SetMatchesText(string messageText)
     {
         _matchesTxt.text = messageText;
@@ -37,6 +38,9 @@ public class GameUIMnager : Singleton<GameUIMnager>
     {
         _gameTimerTxt.text = "TIME " + messageText;
     }
-
+    public void ToggleActivateLevelCompleteScreen(bool flag)
+    {
+        _LevelCompleteScreen.gameObject.SetActive(flag);
+    }
 
 }
