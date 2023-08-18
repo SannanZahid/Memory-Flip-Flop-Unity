@@ -3,7 +3,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+/// <Comment Start>  Class Purpose
+/// Class for managing state of cards as well as handeling card functionality
+/// </Class Purpose>
 public class Card : MonoBehaviour
 {
     [Header("Front and Back Side Card Images")]
@@ -12,8 +14,10 @@ public class Card : MonoBehaviour
     public int CardID { private set; get; } // Card id to uniquely a card
     private Button _cardBtn; //Refernce to button for card interation toggle
     public enum CardSides { Front, Back } //State of the card
-    Action<Card> _callbackGameBoard; //callback for card selected
-    float _cardRotationVelocity;// used for SmoothDampAngle to achieve card flipping animation functionality
+    Action<Card> _callbackGameBoard; //Callback for card selected
+    float _cardRotationVelocity;// Used for SmoothDampAngle to achieve card flipping animation functionality
+    bool flipAnimFlag = true; // Flag to wait for flipping animation to complete
+
     //Initialize the card front with sprite, adds button and binds interation listener to button
     public void Init(int cardId, Sprite cardFace, Action<Card> callback)
     {
@@ -27,6 +31,8 @@ public class Card : MonoBehaviour
     // for calling card side functionality
     public void ShowCardSide(CardSides cardSide)
     {
+        if (!flipAnimFlag)
+            return;
         switch (cardSide)
         {
             case CardSides.Front:
@@ -61,8 +67,11 @@ public class Card : MonoBehaviour
         _cardBack.gameObject.SetActive(false);
         _cardBtn.interactable = false;
     }
+    //For animation of flipping cards.
+    //Rotates card to 90 degree before swaping to card desired face either front or back
     IEnumerator CardAnimationRotationCoroutine(Transform cardF, Transform cardB)
     {
+        flipAnimFlag = false;
         cardB.gameObject.SetActive(false);
         cardF.gameObject.SetActive(true);
         cardF.transform.rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
@@ -93,5 +102,6 @@ public class Card : MonoBehaviour
         }
         cardF.transform.rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
         cardB.transform.rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
+        flipAnimFlag = true;
     }
 }
