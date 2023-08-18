@@ -62,9 +62,10 @@
     <Compile Include="Assets\Scripts\GameConstantsPlayerPref.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\SingletonBase.cs" />
+    <Compile Include="Assets\Scripts\TimeSystem.cs" />
     <Compile Include="Assets\Scripts\ScoreSystem.cs" />
     <Compile Include="Assets\Scripts\GameBoard.cs" />
-    <Compile Include="Assets\Scripts\TimeSystem.cs" />
+    <Compile Include="Assets\Scripts\Managers\MainMenuManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
