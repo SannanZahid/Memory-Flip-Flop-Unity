@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour
     public void StartNextLevel()
     {
         GameUIMnager.Instance.ToggleActivateLevelCompleteScreen(false);
+        GameUIMnager.Instance.ToggleActivateLevelFailScreen(false);
         StartCoroutine(StartGame());
     }
     public void LevelComplete()
@@ -57,7 +58,7 @@ public class GameController : MonoBehaviour
     }
     IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.2f);
         Shuffle(ref _cardFace);
         _gameBoard.ResetBoard(GetShuffleFaceCards());
     }

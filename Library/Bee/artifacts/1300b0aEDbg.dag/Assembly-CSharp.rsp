@@ -353,6 +353,7 @@
 "Assets/Scripts/GameUIMnager.cs"
 "Assets/Scripts/ScoreSystem.cs"
 "Assets/Scripts/SingletonBase.cs"
+"Assets/Scripts/TimeSystem.cs"
 -langversion:9.0
 
 /deterministic

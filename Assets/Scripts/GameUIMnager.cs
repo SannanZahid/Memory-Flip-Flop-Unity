@@ -5,7 +5,7 @@ public class GameUIMnager : Singleton<GameUIMnager>
     [Header("Pass Text References")]
     [SerializeField]
     private TMP_Text _matchesTxt, _turnsTxt, _comboTxt, _totalMatchesTxt, _totalTurnsTxt, _totalComboTxt, _gameLevelTxt,_gameTimerTxt;
-    public Transform _LevelCompleteScreen;
+    public Transform _LevelCompleteScreen, _LevelFailScreen;
     public void SetMatchesText(string messageText)
     {
         _matchesTxt.text = messageText;
@@ -42,5 +42,8 @@ public class GameUIMnager : Singleton<GameUIMnager>
     {
         _LevelCompleteScreen.gameObject.SetActive(flag);
     }
-
+    public void ToggleActivateLevelFailScreen(bool flag)
+    {
+        _LevelFailScreen.gameObject.SetActive(flag);
+    }
 }

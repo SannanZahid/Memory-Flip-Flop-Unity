@@ -19,6 +19,9 @@ public class GameBoard : MonoBehaviour
     [Header("Pass Score System Object")]
     [SerializeField]
     private ScoreSystem _scoreSystem;
+    [Header("Pass Time System Object")]
+    [SerializeField]
+    private TimeSystem _timerSystem;
     private Transform _tempCard = default; // For Card Creation to avoid garbage collection
     private Card _previousCard; // for keeping track of selected card comparing
     private int state = 0; // To maintain cards selected state
@@ -114,6 +117,7 @@ public class GameBoard : MonoBehaviour
         if (_spawnCards.Count <= 0)
         {
             _callbackGameController.Invoke();
+            _timerSystem.StopLevelTimer();
             SetLevelLabel();
         }
     }
@@ -130,6 +134,7 @@ public class GameBoard : MonoBehaviour
         {
             card.GetComponent<Card>().ShowCardSide(Card.CardSides.Back);
         }
+        _timerSystem.StartGameTimer();
     }
     public void ResetBoardElements()
     {
@@ -138,6 +143,7 @@ public class GameBoard : MonoBehaviour
             card.GetComponent<Card>().DeactivateCard();
         }
         _spawnCards.Clear();
+        _timerSystem.ResetTimer();
     }
     public void ResetBoard(List<Sprite> selectedCardFace)
     {
