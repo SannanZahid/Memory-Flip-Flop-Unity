@@ -123,6 +123,104 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &406255819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 406255820}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &406255820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406255819}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 466.5, y: 345.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 639680127}
+  - {fileID: 1817314349}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &639680126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 639680127}
+  - component: {fileID: 639680128}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &639680127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639680126}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 406255820}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &639680128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639680126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034191b559bb0d74b82f7f6c43da35ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cardFace:
+  - {fileID: 1311494806, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  - {fileID: 1425109225, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  - {fileID: 305948799, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  - {fileID: 1162893946, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  - {fileID: 638017070, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  - {fileID: 751907816, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  - {fileID: -591959529, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  - {fileID: 688179439, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  - {fileID: 1362752356, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  - {fileID: -1987341434, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  - {fileID: -866969962, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  - {fileID: -1438091718, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  - {fileID: 1845471700, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  - {fileID: 2059895548, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  - {fileID: -2143440526, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  - {fileID: 1985122603, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  - {fileID: -693546832, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  - {fileID: -27013671, guid: 2c763b557ba88954eb6ecf8b22aeb4df, type: 3}
+  _gameBoard: {fileID: 1817314350}
+  CardToPlaceOnBoard: 8
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,8 +410,9 @@ GameObject:
   - component: {fileID: 999656086}
   - component: {fileID: 999656088}
   - component: {fileID: 999656087}
+  - component: {fileID: 999656089}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: CardHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -377,6 +476,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999656085}
   m_CullTransparentMesh: 1
+--- !u!114 &999656089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999656085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 300, y: 300}
+  m_Spacing: {x: 10, y: 10}
+  m_Constraint: 1
+  m_ConstraintCount: 4
 --- !u!1 &1233322283
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,7 +648,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -623,3 +746,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1817314348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1817314349}
+  - component: {fileID: 1817314350}
+  m_Layer: 0
+  m_Name: GameBoard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1817314349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817314348}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 406255820}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1817314350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817314348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ef6d0d984cfb345b5d8083f7b82fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartGameAfter: 1
+  _cardPrefab: {fileID: 875065443624970601, guid: 083c509d5031c534aa8fe6deacb465f1, type: 3}
+  _boardWidgetHolder: {fileID: 999656086}
